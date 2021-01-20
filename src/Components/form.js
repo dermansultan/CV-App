@@ -1,4 +1,18 @@
 import React from "react";
+import styled from "styled-components";
+
+// Styles
+
+const Wrapper = styled.div`
+width: 100%;
+height: 100%;
+`;
+
+const UserForm = styled.form``;
+
+const FormSection = styled.div`
+
+`;
 
 class Form extends React.Component {
   constructor(props) {
@@ -20,9 +34,10 @@ class Form extends React.Component {
 
   render() {
     return (
+      <Wrapper>
       <form onSubmit={this.handleSubmit}>
-        <div className='information general'>
-        <h2 className='subHeader'>General Information</h2>
+        <div className="information general">
+          <h2 className="subHeader">General Information</h2>
           <label>
             First Name
             <input name="fName" type="text" onChange={this.handleChange} />
@@ -45,23 +60,15 @@ class Form extends React.Component {
             />
           </label>
         </div>
-        <div className='information education'>
-        <h2 className='subHeader'>Education</h2>
-        <label>
+        <div className="information education">
+          <h2 className="subHeader">Education</h2>
+          <label>
             Institution
-            <input
-              name="school"
-              type="text"
-              onChange={this.handleChange}
-            />
+            <input name="school" type="text" onChange={this.handleChange} />
           </label>
           <label>
             Program
-            <input
-              name="program"
-              type="text"
-              onChange={this.handleChange}
-            />
+            <input name="program" type="text" onChange={this.handleChange} />
           </label>
           <label>
             End Date:
@@ -74,51 +81,32 @@ class Form extends React.Component {
             />
           </label>
         </div>
-        <div className='information experience'>
-        <h2 className='subHeader'>Experience</h2>
-        <label>
+        <div className="information experience">
+          <h2 className="subHeader">Experience</h2>
+          <label>
             Company
-            <input
-              name="company"
-              type="text"
-              onChange={this.handleChange}
-            />
+            <input name="company" type="text" onChange={this.handleChange} />
           </label>
           <label>
             Position
-            <input
-              name="position"
-              type="text"
-              onChange={this.handleChange}
-            />
+            <input name="position" type="text" onChange={this.handleChange} />
           </label>
           <label>
-            Responsibilities 
-            <input
-              name="tasks"
-              type="text"
-              onChange={this.handleChange}
-            />
+            Responsibilities
+            <input name="tasks" type="text" onChange={this.handleChange} />
           </label>
           <label>
-            Start Date 
-            <input
-              name="startDate"
-              type="date"
-              onChange={this.handleChange}
-            />
+            Start Date
+            <input name="startDate" type="date" onChange={this.handleChange} />
           </label>
           <label>
-            End Date  
-            <input
-              name="endDate"
-              type="date"
-              onChange={this.handleChange}
-            />
+            End Date
+            <input name="endDate" type="date" onChange={this.handleChange} />
           </label>
         </div>
         <input type="submit" value="Submit" />
       </form>
+      </Wrapper>
     );
   }
 }
