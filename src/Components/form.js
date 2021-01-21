@@ -25,13 +25,26 @@ class Form extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addExperience = this.addExperience.bind(this);
+    this.delExperience = this.delExperience.bind(this);
   }
+
+  delExperience = (obj) => {
+    this.setState((prevState) => ({
+      experiences: prevState.experiences.filter((exp) => exp !== obj),
+    }));
+  };
 
   addExperience = (e) => {
     this.setState((prevState) => ({
       experiences: [
         ...prevState.experiences,
-        { company: prevState.company, position: prevState.position, tasks: prevState.tasks, startDate: prevState.startDate, endDate: prevState.endDate},
+        {
+          company: prevState.company,
+          position: prevState.position,
+          tasks: prevState.tasks,
+          startDate: prevState.startDate,
+          endDate: prevState.endDate,
+        },
       ],
     }));
   };
@@ -47,7 +60,6 @@ class Form extends React.Component {
   }
 
   render() {
-    let { experiences } = this.state;
     return (
       <Wrapper>
         <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
@@ -96,7 +108,7 @@ class Form extends React.Component {
           </div>
           <div className="information experience">
             <h2 className="subHeader">Experience</h2>
-            <ExperiencesList experiences={this.state.experiences}/>
+            <ExperiencesList experiences={this.state.experiences} delExperience={this.delExperience} />
             <label>
               Company
               <input name="company" type="text" onChange={this.handleChange} />
