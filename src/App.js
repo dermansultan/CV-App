@@ -1,4 +1,4 @@
-import Form from "./Components/form"
+import Form from "./Components/Form"
 function App() {
   // section for general information like name, email and phone
   // section for educational experience (school name, title of study, date of study)
