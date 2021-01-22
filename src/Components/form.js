@@ -17,9 +17,13 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      experiences: [
-        { company: "", position: "", tasks: "", startDate: "", endDate: "" },
-      ],
+      experiences: [],
+      company: "",
+      position: "",
+      tasks: "",
+      startDate: "",
+      endDate: "",
+      showIncomplete: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -35,18 +39,31 @@ class Form extends React.Component {
   };
 
   addExperience = (e) => {
-    this.setState((prevState) => ({
-      experiences: [
-        ...prevState.experiences,
-        {
-          company: prevState.company,
-          position: prevState.position,
-          tasks: prevState.tasks,
-          startDate: prevState.startDate,
-          endDate: prevState.endDate,
-        },
-      ],
-    }));
+    this.setState((prevState) => {
+      if (
+        !prevState.company ||
+        !prevState.position ||
+        !prevState.tasks ||
+        !prevState.startDate ||
+        !prevState.endDate
+      ) {
+        this.setState({ showIncomplete: true });
+        return console.log("YEET");
+      }
+      return {
+        showIncomplete: false,
+        experiences: [
+          ...prevState.experiences,
+          {
+            company: prevState.company,
+            position: prevState.position,
+            tasks: prevState.tasks,
+            startDate: prevState.startDate,
+            endDate: prevState.endDate,
+          },
+        ],
+      };
+    });
   };
 
   handleChange(event) {
@@ -108,10 +125,13 @@ class Form extends React.Component {
           </div>
           <div className="information experience">
             <h2 className="subHeader">Experience</h2>
-            <ExperiencesList experiences={this.state.experiences} delExperience={this.delExperience} />
+            <ExperiencesList
+              experiences={this.state.experiences}
+              delExperience={this.delExperience}
+            />
             <label>
               Company
-              <input name="company" type="text" onChange={this.handleChange} />
+              <input name="company" type="text" onChange={this.handleChange} style={{ border: this.state.showIncomplete && !this.state.company ? "1px solid red" : ""}} />
             </label>
             <label>
               Position
@@ -133,7 +153,9 @@ class Form extends React.Component {
               End Date
               <input name="endDate" type="date" onChange={this.handleChange} />
             </label>
-            <button onClick={this.addExperience}>Add Position</button>
+            <button onClick={this.addExperience} type="button">
+              Add Position
+            </button>
           </div>
           <input type="submit" value="Submit" />
         </form>

@@ -7,17 +7,10 @@ flex-direction column;
 `;
 
 function ExperiencesList({ experiences, delExperience }) {
-  // Method for deleting self (pass to cards)
-  // = find index of where it equals the same property
-  console.log(delExperience);
-
   return (
     <ExperiencesWrapper>
       {experiences.map((experience) => (
-        <ExperienceCard 
-        experience={experience}
-        delExperience={delExperience}
-        />
+        <ExperienceCard experience={experience} delExperience={delExperience} />
       ))}
     </ExperiencesWrapper>
   );
