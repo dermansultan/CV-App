@@ -31,6 +31,8 @@ class Form extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addExperience = this.addExperience.bind(this);
     this.delExperience = this.delExperience.bind(this);
+    this.addEducation = this.addEducation.bind(this);
+    this.delEducation = this.delEducation.bind(this);
   }
 
   delExperience = (obj) => {
@@ -48,8 +50,7 @@ class Form extends React.Component {
         !prevState.startDate ||
         !prevState.endDate
       ) {
-        this.setState({ showIncomplete: true });
-        return console.log("YEET");
+        return { showIncomplete: true };
       }
       return {
         showIncomplete: false,
@@ -61,6 +62,37 @@ class Form extends React.Component {
             tasks: prevState.tasks,
             startDate: prevState.startDate,
             endDate: prevState.endDate,
+          },
+        ],
+      };
+    });
+  };
+
+  delEducation = (obj) => {
+    this.setState((prevState) => ({
+      educations: prevState.educations.filter((edu) => edu !== obj),
+    }));
+  };
+
+  addEducation = (e) => {
+    this.setState((prevState) => {
+      if (
+        !prevState.school ||
+        !prevState.program ||
+        !prevState.startDateStudy ||
+        !prevState.endDateStudy
+      ) {
+        return { showIncomplete: true };
+      }
+      return {
+        showIncomplete: false,
+        educations: [
+          ...prevState.educations,
+          {
+            school: prevState.school,
+            program: prevState.program,
+            startDateStudy: prevState.startDateStudy,
+            endDateStudy: prevState.endDateStudy,
           },
         ],
       };
@@ -115,14 +147,26 @@ class Form extends React.Component {
               <input name="program" type="text" />
             </label>
             <label>
-              End Date:
+              Start Date:
               <input
-                name="dateStudy"
+                name="startDateStudy"
                 type="date"
                 min="1900-01-01"
                 max="2025-01-01"
               />
             </label>
+            <label>
+              End Date:
+              <input
+                name="endDateStudy"
+                type="date"
+                min="1900-01-01"
+                max="2025-01-01"
+              />
+            </label>
+            <button type="button" onClick={this.addEducation}>
+              Add Education
+            </button>
           </div>
           <div className="information experience">
             <h2 className="subHeader">Experience</h2>
