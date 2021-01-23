@@ -9,6 +9,6 @@ const Section = styled.div`
 `;
 
 // Component to render preview of CV
-function Preview({ fName, lName, eMail, pNumb, school, program, dateStudy }) {}
+function Preview({ fName, lName, eMail, pNumb, school, program, dateStudy, experiences }) {}
 
 export default Preview;

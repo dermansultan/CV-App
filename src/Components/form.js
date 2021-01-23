@@ -18,11 +18,12 @@ class Form extends React.Component {
     super(props);
     this.state = {
       experiences: [],
-      company: "",
-      position: "",
-      tasks: "",
-      startDate: "",
-      endDate: "",
+      educations: [],
+      // company: "",
+      // position: "",
+      // tasks: "",
+      // startDate: "",
+      // endDate: "",
       showIncomplete: false,
     };
 
@@ -131,15 +132,45 @@ class Form extends React.Component {
             />
             <label>
               Company
-              <input name="company" type="text" onChange={this.handleChange} style={{ border: this.state.showIncomplete && !this.state.company ? "1px solid red" : ""}} />
+              <input
+                name="company"
+                type="text"
+                onChange={this.handleChange}
+                style={{
+                  border:
+                    this.state.showIncomplete && !this.state.company
+                      ? "1px solid red"
+                      : "",
+                }}
+              />
             </label>
             <label>
               Position
-              <input name="position" type="text" onChange={this.handleChange} />
+              <input
+                name="position"
+                type="text"
+                onChange={this.handleChange}
+                style={{
+                  border:
+                    this.state.showIncomplete && !this.state.position
+                      ? "1px solid red"
+                      : "",
+                }}
+              />
             </label>
             <label>
               Responsibilities
-              <input name="tasks" type="text" onChange={this.handleChange} />
+              <input
+                name="tasks"
+                type="text"
+                onChange={this.handleChange}
+                style={{
+                  border:
+                    this.state.showIncomplete && !this.state.tasks
+                      ? "1px solid red"
+                      : "",
+                }}
+              />
             </label>
             <label>
               Start Date
@@ -147,11 +178,27 @@ class Form extends React.Component {
                 name="startDate"
                 type="date"
                 onChange={this.handleChange}
+                style={{
+                  border:
+                    this.state.showIncomplete && !this.state.startDate
+                      ? "1px solid red"
+                      : "",
+                }}
               />
             </label>
             <label>
               End Date
-              <input name="endDate" type="date" onChange={this.handleChange} />
+              <input
+                name="endDate"
+                type="date"
+                onChange={this.handleChange}
+                style={{
+                  border:
+                    this.state.showIncomplete && !this.state.endDate
+                      ? "1px solid red"
+                      : "",
+                }}
+              />
             </label>
             <button onClick={this.addExperience} type="button">
               Add Position
