@@ -15,3 +15,5 @@ function EducationList({ educations, delEducation }) {
     </EducationWrapper>
   );
 }
+
+export default EducationList;

@@ -34,7 +34,14 @@ class Form extends React.Component {
     this.delExperience = this.delExperience.bind(this);
     this.addEducation = this.addEducation.bind(this);
     this.delEducation = this.delEducation.bind(this);
+    this.onGoingBtnHandler = this.onGoingBtnHandler.bind(this);
   }
+
+  onGoingBtnHandler = () => {
+    this.setState((prevState) => ({
+      endDate: "Ongoing",
+    }));
+  };
 
   delExperience = (obj) => {
     this.setState((prevState) => ({
@@ -44,13 +51,7 @@ class Form extends React.Component {
 
   addExperience = (e) => {
     this.setState((prevState) => {
-      if (
-        !prevState.company ||
-        !prevState.position ||
-        !prevState.tasks ||
-        !prevState.startDate ||
-        !prevState.endDate
-      ) {
+      if (!prevState.company || !prevState.position || !prevState.startDate) {
         return { showIncomplete: true };
       }
       return {
@@ -145,7 +146,16 @@ class Form extends React.Component {
             ></EducationList>
             <label>
               Institution
-              <input name="school" type="text" />
+              <input
+                name="school"
+                type="text"
+                style={{
+                  border:
+                    this.state.showIncomplete && !this.state.school
+                      ? "1px solid red"
+                      : "",
+                }}
+              />
             </label>
             <label>
               Program
@@ -158,6 +168,12 @@ class Form extends React.Component {
                 type="date"
                 min="1900-01-01"
                 max="2025-01-01"
+                style={{
+                  border:
+                    this.state.showIncomplete && !this.state.startDateStudy
+                      ? "1px solid red"
+                      : "",
+                }}
               />
             </label>
             <label>
@@ -167,6 +183,12 @@ class Form extends React.Component {
                 type="date"
                 min="1900-01-01"
                 max="2025-01-01"
+                style={{
+                  border:
+                    this.state.showIncomplete && !this.state.endDateStudy
+                      ? "1px solid red"
+                      : "",
+                }}
               />
             </label>
             <button type="button" onClick={this.addEducation}>
@@ -209,17 +231,7 @@ class Form extends React.Component {
             </label>
             <label>
               Responsibilities
-              <input
-                name="tasks"
-                type="text"
-                onChange={this.handleChange}
-                style={{
-                  border:
-                    this.state.showIncomplete && !this.state.tasks
-                      ? "1px solid red"
-                      : "",
-                }}
-              />
+              <input name="tasks" type="text" onChange={this.handleChange} />
             </label>
             <label>
               Start Date
@@ -227,27 +239,14 @@ class Form extends React.Component {
                 name="startDate"
                 type="date"
                 onChange={this.handleChange}
-                style={{
-                  border:
-                    this.state.showIncomplete && !this.state.startDate
-                      ? "1px solid red"
-                      : "",
-                }}
               />
             </label>
             <label>
               End Date
-              <input
-                name="endDate"
-                type="date"
-                onChange={this.handleChange}
-                style={{
-                  border:
-                    this.state.showIncomplete && !this.state.endDate
-                      ? "1px solid red"
-                      : "",
-                }}
-              />
+              <input name="endDate" type="date" onChange={this.handleChange} />
+              <button onClick={this.onGoingBtnHandler}>
+                This job is ongoing.
+              </button>
             </label>
             <button onClick={this.addExperience} type="button">
               Add Position
