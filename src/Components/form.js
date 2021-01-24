@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ExperiencesList from "./ExpList";
+import EducationList from "./EduList";
 
 // Styles
 
@@ -138,6 +139,10 @@ class Form extends React.Component {
           </div>
           <div className="information education">
             <h2 className="subHeader">Education</h2>
+            <EducationList
+              educations={this.state.educations}
+              delEducation={this.delEducation}
+            ></EducationList>
             <label>
               Institution
               <input name="school" type="text" />
